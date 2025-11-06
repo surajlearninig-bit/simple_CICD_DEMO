@@ -8,8 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ src/
 COPY tests/ tests/
 
-# Install your package in editable mode
-RUN pip install -e src/
+# Set PYTHONPATH so Python can find your src modules
+ENV PYTHONPATH=/app/src
 
+# Default command to run the app
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
-
